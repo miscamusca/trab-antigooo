@@ -10,6 +10,16 @@ import time
 import getpass
 import os
 
+class ExececaoVazio (Exception):
+  pass
+
+def vazio_error(x):
+  if x =="":
+    raise ExececaoVazio()
+    print("Preencha todos os campos.")  
+  else:
+    return  
+
 class Pessoa:
   def __init__(self, nome, email, senha, telefone):
     self.nome = nome
@@ -20,10 +30,12 @@ class Pessoa:
   def cadastro(self):
     if menu1 == '1':
 
-      while True: # Não deixar campos vazios 
-        self.nome = input('Nome: ')
-        if self.nome=="":
-          print("Preencha todos os campos.")  
+      while True: 
+        try:
+          self.nome = input('Nome: ')
+          print(vazio_error(self.nome))
+        except ExececaoVazio:
+          print ("kkkkk")
         else:
           break
 
@@ -39,15 +51,21 @@ class Pessoa:
 #exceção em telefone. deve conter apenas números
       while True:
         try:
-          self.tel=int(input('Telefone: '))
-          break
+          self.tel= int(input('Telefone: '))
         except ValueError:
           print("Número inválido. ")
+        else:
+          break
+          
           
 #exceçaõ em cpf. apenas números
       while True:
         try:
           self.cpf=int(input('cpf:'))
+          if self.cpf=="":
+            raise Exception("Preencha todos os campos.")
+        except Exception as a:
+          print(a)
         except ValueError:
           print("CPF foi preenchido incorretamente. Use apenas números.")
         else:
