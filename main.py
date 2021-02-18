@@ -10,6 +10,7 @@ import time
 import getpass
 import os
 
+#kkkkkkkkkkkkk
 class ExececaoVazio (Exception):
   pass
 
