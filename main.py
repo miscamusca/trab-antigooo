@@ -10,7 +10,8 @@ import time
 import getpass
 import os
 
-#kkkkkkkkkkkkk
+class minhaexception (Exception):
+  pass
 class ExececaoVazio (Exception):
   pass
 
@@ -65,11 +66,22 @@ class Pessoa:
         try:
           self.tel = input('Telefone: ')
           vazio_error(self.tel)
-          self.tel = int(self.tel)
+          for r in self.tel:
+            if r.isdigit==False:
+              raise ValueError
+          
+          if len(self.tel) != 11:
+            raise IndexError 
+
+            
         except ExececaoVazio:
           print ("Preencha todos os campos")
         except ValueError:
           print("Número inválido. ")
+        except IndexError:
+          print("oia")
+
+        
         else:
           break  
           
